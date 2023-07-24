@@ -7,7 +7,7 @@ const CommentsSection = () => {
 
   const handleAddComment = () => {
     if (newComment.trim() !== '') {
-      setComments([...comments, { content: newComment, replies: [], id: Date.now() }]);
+      setComments([...comments, { content: newComment, replies: [], id: Date.now(), username: 'User1' }]);
       setNewComment('');
     }
   };
@@ -48,8 +48,10 @@ const CommentsSection = () => {
       <ul>
         {comments.map((comment) => (
           <li key={comment.id}>
-            {comment.content}
-            <button type="button" className="btn btn-danger" onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+            <strong>{comment.username}</strong>: {comment.content} {/* Display the username here */}
+            <button type="button" className="btn btn-danger" onClick={() => handleDeleteComment(comment.id)}>
+              Delete
+            </button>
             <div>
               <input
                 type="text"
@@ -60,7 +62,7 @@ const CommentsSection = () => {
               <button
                 type="button"
                 className="btn btn-secondary"
-                onClick={() => handleAddReply(comment.id, { content: replyInputs[comment.id], id: Date.now() })}
+                onClick={() => handleAddReply(comment.id, { content: replyInputs[comment.id], id: Date.now(), username: 'User1' })}
               >
                 Reply
               </button>
@@ -69,7 +71,7 @@ const CommentsSection = () => {
               <ul>
                 {comment.replies.map((reply) => (
                   <li key={reply.id}>
-                    {reply.content}
+                    <strong>{reply.username}</strong>: {reply.content} {/* Display the username for replies */}
                     <button
                       type="button"
                       className="btn btn-danger"
