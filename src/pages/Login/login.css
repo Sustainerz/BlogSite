@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "CustomFont";
+}
+
+@font-face {
+    font-family: "CustomFont";
+    src: url("../../fonts/RolexLight.woff2");
+}
+
+.page {
+    height: 120vh; /* Increase the height to make the whole page bigger */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75em;
+}
+
+.bg {
+    background-image: url("../../images/bglogin.jpg");
+    margin: 2em 0; /* Add margin of 2em from top and bottom */
+}
+
+.alt-login {
+    width: 80%;
+    height: 3em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.alt-login div {
+    width: 47.5%;
+    height: 90%;
+    border-radius: 0.25em;
+    background-color: black;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.google {
+    background-image: url("../../images/google.png");
+}
+
+.facebook {
+    background-image: url("../../images/facebook.png");
+}
+
+input:focus {
+    outline-color: rgb(32, 177, 255);
+}
+
+/* ... (previous CSS rules) ... */
+
+/* Increase the width and height of the .cover to make it bigger */
+.cover {
+    background-color: white;
+    width: 90%; /* Increase the width to make the box even bigger */
+    height: 80%; /* Increase the height to make the box even bigger */
+    max-width: 35em; /* Set a maximum width for the cover */
+    max-height: 55em; /* Set a maximum height for the cover */
+    position: relative;
+    border-radius: 1em;
+    box-shadow: 0 0.188em 1.550em rgb(156, 156, 156);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    /* Center the login box on the page horizontally */
+    margin: 2em auto; /* Add margin from top and bottom */
+}
+/* ... (previous CSS rules) ... */
+
+.login-popup {
+    position: absolute;
+    height: 15em; /* Increase the height to make the login popup even bigger */
+    width: 20em; /* Increase the width to make the login popup bigger */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25em;
+    background-color: white;
+    color: black;
+    bottom: 0;
+    transform: scale(1);
+    transition: 1.5s;
+}
+
+/* ... (previous CSS rules) ... */
+
+
+input {
+    border: none;
+    background-color: rgb(229, 226, 226);
+    width: 80%;
+    /* Add some space between the input elements */
+    margin-bottom: 1em;
+    border-radius: 0.25em;
+    text-align: center;
+    padding: 2em;
+    font-size: 0.75em;
+}
+
+.login-btn {
+    width: 40%;
+    height: 3em;
+    background-color: rgb(32, 177, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 0.25em;
+    cursor: pointer;
+    /* Center the login button within the login box */
+    margin: 0 auto;
+    /* Add some space between the login button and the input fields */
+    margin-top: 1em;
+}
+
+/* ... (previous CSS rules) ... */
+
+
+.login-btn:hover {
+    transform: scale(1.1);
+}
+
+.text {
+    position: relative;
+    bottom: 0.5%;
+}
+
+.hide {
+    position: absolute;
+    transform: scale(0);
+}
+
+.blue {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../../images/google.png");
+}
+
+/* -------------------- TABLET OPTIMIZATION -------------------- */
+@media only screen and (min-device-width: 37em) {
+    .page {
+        font-size: 1em;
+    }
+
+    .cover {
+        width: 60%;
+        height: 70%;
+    }
+}
+
+/* -------------------- DESKTOP OPTIMIZATION -------------------- */
+@media only screen and (min-device-width: 64em) {
+    .page {
+        font-size: 1.25em;
+    }
+
+    .cover {
+        width: 25%;
+        height: 65%;
+    }
+}

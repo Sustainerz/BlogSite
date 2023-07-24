@@ -5,6 +5,7 @@ import Chip from '../../components/common/Chip';
 import EmptyList from '../../components/common/EmptyList';
 import './styles.css';
 import { Link } from 'react-router-dom';
+import CommentsSection from '../../components/CommentsSection';
 
 const Blog = () => {
   const { id } = useParams();
@@ -37,6 +38,9 @@ const Blog = () => {
           </header>
           <img src={blog.cover} alt='cover' />
           <p className='blog-desc'>{blog.description}</p>
+
+          {/* Comments Section */}
+          <CommentsSection />
         </div>
       ) : (
         <EmptyList />
