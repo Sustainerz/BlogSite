@@ -3,28 +3,84 @@ import React, { useState } from 'react';
 const CommentsSection = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
+  const [replyInputs, setReplyInputs] = useState({});
 
   const handleAddComment = () => {
     if (newComment.trim() !== '') {
-      setComments([...comments, newComment]);
+      setComments([...comments, { content: newComment, replies: [], id: Date.now() }]);
       setNewComment('');
     }
   };
 
-  const handleDeleteComment = (index) => {
-    const updatedComments = [...comments];
-    updatedComments.splice(index, 1);
+  const handleDeleteComment = (commentId) => {
+    const updatedComments = comments.filter((comment) => comment.id !== commentId);
     setComments(updatedComments);
+  };
+
+  const handleAddReply = (parentId, reply) => {
+    const updatedComments = comments.map((comment) => {
+      if (comment.id === parentId) {
+        return { ...comment, replies: [...comment.replies, reply] };
+      }
+      return comment;
+    });
+    setComments(updatedComments);
+    setReplyInputs({ ...replyInputs, [parentId]: '' }); // Reset the specific reply input after adding the reply
+  };
+
+  const handleDeleteReply = (commentId, replyId) => {
+    const updatedComments = comments.map((comment) => {
+      if (comment.id === commentId) {
+        return { ...comment, replies: comment.replies.filter((reply) => reply.id !== replyId) };
+      }
+      return comment;
+    });
+    setComments(updatedComments);
+  };
+
+  const handleReplyInputChange = (parentId, value) => {
+    setReplyInputs({ ...replyInputs, [parentId]: value });
   };
 
   return (
     <div>
       <h2>Comments</h2>
       <ul>
-        {comments.map((comment, index) => (
-          <li key={index}>
-            {comment}
-            <button type="button" class="btn btn-danger" onClick={() => handleDeleteComment(index)}>Delete</button>
+        {comments.map((comment) => (
+          <li key={comment.id}>
+            {comment.content}
+            <button type="button" className="btn btn-danger" onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+            <div>
+              <input
+                type="text"
+                value={replyInputs[comment.id] || ''}
+                onChange={(e) => handleReplyInputChange(comment.id, e.target.value)}
+                placeholder="Write a reply..."
+              />
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => handleAddReply(comment.id, { content: replyInputs[comment.id], id: Date.now() })}
+              >
+                Reply
+              </button>
+            </div>
+            {comment.replies.length > 0 && (
+              <ul>
+                {comment.replies.map((reply) => (
+                  <li key={reply.id}>
+                    {reply.content}
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => handleDeleteReply(comment.id, reply.id)}
+                    >
+                      Delete
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>
@@ -35,7 +91,7 @@ const CommentsSection = () => {
           onChange={(e) => setNewComment(e.target.value)}
           placeholder="Write a comment..."
         />
-        <button type="button" class="btn btn-secondary" onClick={handleAddComment}>Submit</button>
+        <button type="button" className="btn btn-secondary" onClick={handleAddComment}>Submit</button>
       </div>
     </div>
   );
