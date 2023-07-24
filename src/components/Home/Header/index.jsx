@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Home', 'About Us', 'Blog'];
+const pages = ['Home', 'About Us', 'Blog', 'Sign Up', 'Login']; // Add "Sign Up" and "Login" to the pages array
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -36,7 +36,6 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <>
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -126,6 +125,12 @@ function ResponsiveAppBar() {
             ))}
           </Box>
 
+          <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
+            {/* Add the Login and Sign Up buttons */}
+            <Button color="inherit" sx={{ mx: 1 }}>Login</Button>
+            <Button color="inherit" sx={{ mx: 1 }}>Sign Up</Button>
+          </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -158,7 +163,7 @@ function ResponsiveAppBar() {
         </Toolbar>
       </Container>
     </AppBar>
-    </>
   );
 }
+
 export default ResponsiveAppBar;
