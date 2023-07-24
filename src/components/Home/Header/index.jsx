@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link } from 'react-router-dom';
 
 const pages = ['Home', 'About Us', 'Blog', 'Sign Up', 'Login']; // Add "Sign Up" and "Login" to the pages array
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -127,8 +128,8 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
             {/* Add the Login and Sign Up buttons */}
-            <Button color="inherit" sx={{ mx: 1 }}>Login</Button>
-            <Button color="inherit" sx={{ mx: 1 }}>Sign Up</Button>
+              <Button color="inherit" sx={{ mx: 1 }}>Sign Up</Button>
+              <Button color="inherit" sx={{ mx: 1 }}>Login</Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
